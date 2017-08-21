@@ -1,0 +1,22 @@
+Árbol formado por los Widgets
+
+
+  GtkObject
+   +GtkData
+   | +GtkAdjustment
+   |  ` GtkTooltips
+    ` GtkWidget
+      +GtkContainer
+      | +GtkBin
+      | | +GtkAlignment
+      | | +GtkEventBox
+      | | +GtkFrame
+      | | | ` GtkAspectFrame
+      | | +GtkHandleBox
+      | | +GtkItem
+      | | | +GtkListItem
+      | | | +GtkMenuItem
+      | | | | `GtkCheckMenuItem
+      | | | |   `GtkRadioMenuItem
+      etc
+

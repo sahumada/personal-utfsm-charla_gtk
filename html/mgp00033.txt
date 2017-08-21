@@ -1,0 +1,20 @@
+Hello World mejorado (cont ...)
+
+
+  /* Establecemos el controlador para la llamada delete_event que termina 
+   * la aplicación inmediatamente */
+  gtk_signal_connect( GTK_OBJECT(window), "delete_event", GTK_SIGNAL_FUNC(delete_event), NULL );
+
+  /* Establecemos el ancho del borde de la ventana. */
+  gtk_container_border_width( GTK_CONTAINER(window), 10 );
+
+  /* Creamos una caja donde empaquetaremos los widgets. La caja 
+   * no se ve realmente, sólo sirve para introducir los widgets */
+   box1 = gtk_hbox_new( FALSE, 0 );
+
+   /* ponemos la caja en la ventana principal */
+   gtk_container_add( GTK_CONTAINER(window), box1 );
+
+   /* Creamos un nuevo botón con la etiqueta "Button 1" */
+   button = gtk_button_new_with_label("Button 1");
+

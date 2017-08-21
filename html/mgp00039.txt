@@ -1,0 +1,12 @@
+Widgets en general
+
+
+Pasos a tener en cuenta al crear un Widget
+Usar gtk_*_new - Una de las diferentes formas de crear un widget
+Connectar todas las señales y los eventos a los controladores apropiados
+Establecer los atributos del widget
+Empaquetar el widget en un contenedor usando gtk_container_add() o gtk_box_pack_start()
+Mostrar el widget usando gtk_widget_show() o gtk_widget_show_all()
+
+Se puede utilizar además, gtk_wigdet_hide()
+

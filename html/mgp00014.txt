@@ -1,0 +1,17 @@
+Introducción a Glib (Ejemplo 1)
+
+
+Ejemplo 1 (código):
+  #include <glib.h>
+  #include <errno.h>
+  
+  int main()
+  {
+    gchar *filename;
+    
+    filename = "/home/san/hola.c";
+    g_message("glib_ex:open:%s:%s\n", filename, g_strerror(errno));
+    
+    return 0;
+  }
+

@@ -1,0 +1,22 @@
+Introducción a Glib (Ejemplo 2)
+
+
+Ejemplo 2 (Código):
+#include <glib.h>
+
+int main()
+{
+  GSList *list;
+
+  list = NULL;
+  list = g_slist_append( list, "dos" );
+  list = g_slist_append( list, "tres" );
+  list = g_slist_insert( list, "uno", 0 );
+  
+  g_print("Largo de la lista: %d\n", g_slist_length( list ));
+  g_print("Segundo elemento : %s\n", (guchar *) g_slist_nth_data( list, 1));
+  g_slist_free( list );
+  
+  return 0;
+}
+

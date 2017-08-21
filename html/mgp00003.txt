@@ -1,0 +1,14 @@
+Muy breve historia ...
+
+
+GIMP. GNU Image Manipulation Program.
+GTK. The GIMP ToolKit.
+GTK+ es una herramienta multiplataforma para crear interfaces usuarias.
+GTK+ y dependencias:
+Glib. Definiciones y funciones para portabilidad (libc).
+GDK. Wrapper de las funciones de Xlib.
+Pango. Biblioteca de renderizado de texto e internacionalización.
+ATK. Interfaz de accesibilidad para objetos que realicen acciones.
+
+GTK+ es Software Libre y parte del proyecto GNU (LGPL).
+

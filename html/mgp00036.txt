@@ -1,0 +1,16 @@
+Widgets de empaquetamiento
+
+
+Cuando se requiere más de un Widget por ventana
+Control de posición dentro de la ventana
+
+Uso de cajas
+Cajas horizontales y verticales
+Horizontales: Izquierda a derecha
+Verticales: Arriba a abajo
+Infinitas cajas
+gtk_hbox_new()
+gtk_vbox_new()
+gtk_box_pack_start(): Izq. -> Der, Arr. -> Abj.
+gtk_box_pack_end(): Der. -> Izq., Abj. -> Arr.
+

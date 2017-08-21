@@ -1,0 +1,9 @@
+Introducción a Glib (Ejemplo 2)
+
+
+Otro ejemplo:
+$ gcc -Wall glib_lst.c -o glib_lst `pkg-config glib-2.0 --cflags --libs`
+$ ./glib_lst
+Largo de la lista: 3
+Segundo elemento : dos
+

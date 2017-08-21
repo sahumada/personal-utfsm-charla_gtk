@@ -1,0 +1,15 @@
+Señales y respuestas
+
+
+GTK es un toolkit gestionado mediante eventos.
+GTK "duerme" en gtk_main() hasta que se recibe un evento, y transfiere el control.
+El control se transfiere mediante "señales".
+Para que un objeto haga algo, se crea un controlador de señales
+gint gtk_signal_connect( GtkObject *object, gchar *name,
+                         GtkSignalFunc  func, gpointer func_data );
+
+object: Widget que emite la señal
+name : Señal que se quiere cazar
+func  : Función a llamar
+func_data : Datos que se pasan a la función func
+

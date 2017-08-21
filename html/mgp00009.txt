@@ -1,0 +1,13 @@
+Introducción a Glib (Manejo de memoria)
+
+
+Funciones para manejo de memoria
+gpointer g_malloc( gulong size );
+No necesita comprobar el valor devuelto, ya que ya lo hace por usted esta función.
+gpointer g_malloc0( gulong size );
+Rellena con ceros la memoria y devuelve un puntero a ella.
+gpointer g_realloc( gpointer mem, gulong size );
+Cambia el tamaño de la memoria apuntado por mem a size bytes. Debe haber sido previamente reservada.
+void g_free( gpointer mem );
+Libera el espacio de memoria apuntado por mem.
+

@@ -1,0 +1,10 @@
+Señales y respuestas
+
+
+La función en el tercer argumento se denomina "función de respuesta".
+
+void callback_func( GtkWidget *widget, gpointer callback_data );
+
+widget: Widget que emite la señal
+callback_data: Puntero a los datos pasados por gtk_signal_connect()
+

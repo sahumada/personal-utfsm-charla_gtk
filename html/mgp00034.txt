@@ -1,0 +1,19 @@
+Hello World mejorado (cont ...)
+
+
+   /* Cada vez que el botón sea pulsado llamamos a la función "callback" 
+    * con un puntero a "button 1" como argumento */
+   gtk_signal_connect( GTK_OBJECT(button), "clicked", GTK_SIGNAL_FUNC(callback), (gpointer) "button 1" );
+
+   /* En lugar de gtk_container_add empaquetamos el botón en la caja
+    * invisible, que a su vez ha sido empaquetado en la ventana. */
+   gtk_box_pack_start( GTK_BOX(box1), button, TRUE, TRUE, 0 );
+
+   /* hacemos lo mismo para crear un segundo botón */
+   button = gtk_button_new_with_label( "Button 2" );
+
+   /* Llamamos a la misma función de respuesta pero con diferente 
+    * argumento: un puntero a "button 2" */
+   gtk_signal_connect( GTK_OBJECT(button), "clicked", GTK_SIGNAL_FUNC(callback), (gpointer) "button 2" );
+   gtk_box_pack_start( GTK_BOX(box1), button, TRUE, TRUE, 0 );
+

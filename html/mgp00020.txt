@@ -1,0 +1,16 @@
+Ejemplo muy simple !
+
+
+Todo programa GTK debe incluir gtk/gtk.h
+gtk_init() inicializa la biblioteca para que pueda utilizarse
+gtk_init() establece parámetros por omisión, señales, etc
+gtk_init() busca en los parámetros de linea de comando lo siguiente:
+--display		 
+--debug-level		  
+--no-xshm		   
+--sync		    
+--show-events		     
+--no-show-events		      
+--name		       
+--class
+

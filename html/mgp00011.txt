@@ -1,0 +1,15 @@
+Introducción a Glib (Otras funciones)
+
+
+Manejo de strings
+GString *g_string_new( gchar *init );
+void g_string_free( GString *string, gint free_segment );
+GString *g_string_assign( GString *lval, gchar *rval );		
+GString *g_string_truncate( GString *string, gint len );
+GString *g_string_append( GString *string, gchar *val );
+GString *g_string_append_c( GString *string, gchar c );
+GString *g_string_prepend( GString *string, gchar *val );
+GString *g_string_prepend_c( GString *string, gchar c );
+void g_string_sprintf( GString *string, gchar *fmt, ...);
+void g_string_sprintfa ( GString *string, gchar *fmt, ... );
+

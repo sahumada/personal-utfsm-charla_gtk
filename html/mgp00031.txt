@@ -1,0 +1,18 @@
+Hello World mejorado
+
+
+#include <gtk/gtk.h>
+
+/* Respuesta mejorada. Los argumentos de la función se imprimen en el stdout. */
+void callback(GtkWidget *widget, gpointer data)
+{
+  g_print("Hello again - %s was pressed\n", (char *) data);
+}
+
+/* otra respuesta */
+void delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
+{
+  gtk_main_quit();
+}
+
+

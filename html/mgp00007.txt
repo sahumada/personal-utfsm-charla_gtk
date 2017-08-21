@@ -1,0 +1,15 @@
+Introducción a Glib (Listas enlazadas)
+
+
+GSList *g_slist_last( GSList *list );
+gint g_slist_length( GSList *list );
+void g_slist_foreach( GSList *list, GFunc func, gpointer user_data);
+
+Listas Doblemente enlazadas
+GList *g_list_alloc( void );
+void g_list_free( GList *list );
+void g_list_free_1( GList *list );
+GList *g_list_append( GList *list, gpointer data );                
+GList *g_list_prepend( GList *list, gpointer data );
+GList *g_list_insert( GList *list, gpointer data, gint position );
+

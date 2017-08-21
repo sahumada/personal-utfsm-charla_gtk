@@ -1,0 +1,742 @@
+%deffont "standard"   tfont "standard.ttf",   tmfont "kochi-mincho.ttf"
+%deffont "thick"      tfont "thick.ttf",      tmfont "goth.ttf"
+%deffont "typewriter" tfont "typewriter.ttf", tmfont "goth.ttf"
+%default 1 size 7, vgap 10, prefix " ", leftfill, fore "yellow"
+%default 2 size 2, bar "gray70", vgap 10, fore "white"
+%default 3 size 5, vgap 30, fore "white"
+%tab 1 size 5, vgap 90, prefix "  ", icon box "green" 50, fore "white"
+%tab 2 size 4.5, vgap 70, prefix "      ", icon arc "yellow" 50, fore "white"
+%tab 3 size 4, vgap 40, prefix "          ", icon delta3 "red" 40, fore "white"
+%tab 4 size 4, vgap 20, prefix "        ", icon box "cyan" 10, fore "cyan"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+%charset "iso8859-1"
+%nodefault
+%center, tfont "arialbd.ttf", size 8, fore "white", vgap 20
+
+
+%image "gtk_gray.png" 800x600
+%cont
+ Introducción a GTK & Glade
+%cont
+%image "glade_gray.png" 800x600
+
+Depto. Informática UTFSM
+
+
+
+%size 5, fore "yellow"
+Sergio Ahumada N
+san@inf.utfsm.cl
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Temario
+
+
+	Introducción a Glib
+	Introducción a GTK+
+		Widgets
+		Señales
+		Empaquetadores
+	Un ejemplo con Glade
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Muy breve historia ...
+
+
+	GIMP. GNU Image Manipulation Program.
+	GTK. The GIMP ToolKit.
+	GTK+ es una herramienta multiplataforma para crear interfaces usuarias.
+	GTK+ y dependencias:
+		Glib. Definiciones y funciones para portabilidad (libc).
+		GDK. Wrapper de las funciones de Xlib.
+		Pango. Biblioteca de renderizado de texto e internacionalización.
+		ATK. Interfaz de accesibilidad para objetos que realicen acciones.
+
+	GTK+ es Software Libre y parte del proyecto GNU (LGPL).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Definiciones)
+
+
+	Definiciones (#include <glib.h>)
+		char  gchar;		unsigned char   guchar;
+		short gshort;		unsigned short  gushort;
+		long  glong;		unsigned long   gulong;
+		int   gint;		unsigned int    guint;
+		char  gboolean;
+
+		float   gfloat;
+		void*   gpointer;
+		double  gdouble;
+		long double gldouble;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Definiciones)
+
+
+	Definiciones (independientes de la arquitectura)
+		gint8
+		guint8
+		gint16
+		guint16
+		gint32
+		guint32
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Listas enlazadas)
+
+
+	Listas Simplemente enlazadas
+		GSList *g_slist_alloc( void );
+		void g_slist_free( GSList *list );
+		void g_slist_free_1( GSList *list );
+		GSList *g_slist_append( GSList *list, gpointer data );
+		GSList *g_slist_prepend( GSList *list, gpointer data );
+		GSList *g_slist_insert( GSList *list, gpointer data, gint position );
+		GSList *g_slist_remove( GSList *list, gpointer data );
+		GSList *g_slist_remove_link( GSList *list, GSList *link );
+		GSList *g_slist_reverse( GSList *list );
+		GSList *g_slist_nth( GSList *list, gint n );
+		gpointer g_slist_nth_data( GSList *list, guint n );
+		GSList *g_slist_find( GSList *list, gpointer data );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Listas enlazadas)
+
+
+		GSList *g_slist_last( GSList *list );
+		gint g_slist_length( GSList *list );
+		void g_slist_foreach( GSList *list, GFunc func, gpointer user_data);
+
+	Listas Doblemente enlazadas
+		GList *g_list_alloc( void );
+		void g_list_free( GList *list );
+		void g_list_free_1( GList *list );
+		GList *g_list_append( GList *list, gpointer data );
+		GList *g_list_prepend( GList *list, gpointer data );
+		GList *g_list_insert( GList *list, gpointer data, gint position );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Árboles binarios)
+
+
+	Árboles binarios balanceados
+		GTree* g_tree_new( GCompareFunc key_compare_func );
+		void g_tree_insert( GTree *tree, gpointer key, gpointer value );
+		gint g_tree_nnodes( GTree *tree );
+		gint g_tree_height( GTree *tree );
+		gpointer g_tree_lookup( GTree *tree, gpointer key );
+		gpointer g_tree_search( GTree *tree, GSearchFunc search_func, gpointer data );
+		void g_tree_traverse( GTree *tree, GTraverseFunc traverse_func, GTraverseType traverse_type, gpointer data );
+		void g_tree_remove( GTree *tree, gpointer key );
+		void g_tree_destroy( GTree *tree );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Manejo de memoria)
+
+
+	Funciones para manejo de memoria
+		gpointer g_malloc( gulong size );
+			No necesita comprobar el valor devuelto, ya que ya lo hace por usted esta función.
+		gpointer g_malloc0( gulong size );
+			Rellena con ceros la memoria y devuelve un puntero a ella.
+		gpointer g_realloc( gpointer mem, gulong size );
+			Cambia el tamaño de la memoria apuntado por mem a size bytes. Debe haber sido previamente reservada.
+		void g_free( gpointer mem );
+			Libera el espacio de memoria apuntado por mem.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Temporizadores)
+
+
+	Funciones de Timers
+		GTimer *g_timer_new( void );
+		void g_timer_destroy( GTimer *timer );
+		void g_timer_start( GTimer  *timer );
+		void g_timer_stop( GTimer  *timer );
+		void g_timer_reset( GTimer  *timer );
+		gdouble g_timer_elapsed( GTimer *timer, gulong *microseconds );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Otras funciones)
+
+
+	Manejo de strings
+		GString *g_string_new( gchar *init );
+		void g_string_free( GString *string, gint free_segment );
+		GString *g_string_assign( GString *lval, gchar *rval );
+		GString *g_string_truncate( GString *string, gint len );
+		GString *g_string_append( GString *string, gchar *val );
+		GString *g_string_append_c( GString *string, gchar c );
+		GString *g_string_prepend( GString *string, gchar *val );
+		GString *g_string_prepend_c( GString *string, gchar c );
+		void g_string_sprintf( GString *string, gchar *fmt, ...);
+		void g_string_sprintfa ( GString *string, gchar *fmt, ... );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Otras funciones)
+
+
+	Funciones de error y funciones varias
+		void g_print( gchar *format, ... );
+			Reemplazo de printf(3).
+		gchar *g_strdup( const gchar *str );
+			Duplica un string str en un nuevo lugar en memoria, y devuelve un puntero.
+		gchar *g_strerror( gint errnum );
+			Salida: nombre del programa:función que falló:archivo o descripción adicional:strerror
+		void g_error( gchar *format, ... );
+			Imprime mensaje agregando "**ERROR**:" y termina el programa.
+		void g_warning( gchar *format, ... );
+			Imprime mensaje agregando "**WARNING**:", no sale del programa.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Otras funciones)
+
+
+	Funciones de error y funciones varias (Continuación...)
+		void g_message( gchar *format, ... );
+			Imprime mensaje agregando "Message:"
+		gchar *g_strsignal( gint signum );
+			Imprime el nombre de la señal del sistema Unix que corresponde con el número signum.
+
+	Un ejemplo:
+			$ gcc -Wall glib_ex.c -o glib_ex `pkg-config glib-2.0 --cflags --libs`
+			$ ./glib_ex
+			** Message: glib_ex:open:/home/san/hola.c:Success
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Ejemplo 1)
+
+
+	Ejemplo 1 (código):
+				  #include <glib.h>
+				  #include <errno.h>
+
+				  int main()
+				  {
+				    gchar *filename;
+
+				    filename = "/home/san/hola.c";
+				    g_message("glib_ex:open:%s:%s\\n", filename, g_strerror(errno));
+
+				    return 0;
+				  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Ejemplo 2)
+
+
+	Otro ejemplo:
+			$ gcc -Wall glib_lst.c -o glib_lst `pkg-config glib-2.0 --cflags --libs`
+			$ ./glib_lst
+			Largo de la lista: 3
+			Segundo elemento : dos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Ejemplo 2)
+
+
+	Ejemplo 2 (Código):
+				#include <glib.h>
+
+				int main()
+				{
+				  GSList *list;
+
+				  list = NULL;
+				  list = g_slist_append( list, "dos" );
+				  list = g_slist_append( list, "tres" );
+				  list = g_slist_insert( list, "uno", 0 );
+
+				  g_print("Largo de la lista: %d\\n", g_slist_length( list ));
+				  g_print("Segundo elemento : %s\\n", (guchar *) g_slist_nth_data( list, 1));
+				  g_slist_free( list );
+
+				  return 0;
+				}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a Glib (Referencias)
+
+
+	http://developer.gnome.org/doc/API/glib/index.html
+	http://www.gnome.org/projects/devtools/devhelp.shtml
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a GTK+
+
+
+	GTK+ es un API orientado a objetos.
+	Está completamente escrito en C.
+	Soporta la idea de clases y funciones de respuesta (punteros a funciones)
+	Lenguajes: C, C++, Objective C, Ada, Perl, Python, PHP, Scheme, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ejemplo muy simple !
+
+
+	ya_dije_simple.c
+				#include <gtk/gtk.h>
+
+				int main( int argc, char *argv[] )
+				{
+				  GtkWidget *window;
+
+				  gtk_init( &argc, &argv );
+
+				  window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+				  gtk_widget_show( window );
+
+				  gtk_main();
+
+				  return 0;
+				}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ejemplo muy simple !
+
+
+	Todo programa GTK debe incluir gtk/gtk.h
+	gtk_init() inicializa la biblioteca para que pueda utilizarse
+	gtk_init() establece parámetros por omisión, señales, etc
+	gtk_init() busca en los parámetros de linea de comando lo siguiente:
+			--display
+			--debug-level
+			--no-xshm
+			--sync
+			--show-events
+			--no-show-events
+			--name
+			--class
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ejemplo muy simple !
+
+
+		window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+			GTK_WINDOW_TOPLEVEL decora y sitúa la ventana
+			Ventanas de 200x200 por omisión
+
+		gtk_widget_show( window );
+			El Widget está listo, puede mostrarlo
+
+		gtk_main()
+			Todo programa GTK debe tener esta función. En espera que ocurra algún evento
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Algunas consideraciones ...
+
+
+	Utilitario pkg-config
+			$ pkg-config --cflags --libs gtk+-2.0
+			-I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/pango-1.0 -I/usr/include/freetype2 -I/usr/X11R6/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -Wl,--export-dynamic -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangoxft-1.0 -lpangox-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0
+
+	Uso de "backticks"
+			$ gcc `pkg-config --cflags --libs gtk+-2.0` ya_dije_simple.c -o muy_simple
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ahora si, Hello World !
+
+
+				#include <gtk/gtk.h>
+
+				void hello( GtkWidget *widget, gpointer data )
+				{
+				  g_print( "Hello World\\n" );
+				}
+
+				gint delete_event( GtkWidget *widget, GdkEvent *event, gpointer data )
+				{
+				  g_print("delete event occured\\n");
+
+				  return (TRUE);
+				}
+
+				void destroy( GtkWidget *widget, gpointer data )
+				{
+				  gtk_main_quit();
+				}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ahora si, Hello World (cont ...)!
+
+
+				int main( int argc, char **argv )
+				{
+				  GtkWidget *window, *button;
+
+				  gtk_init( &argc, &argv );
+
+				  window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+				  button = gtk_button_new_with_label( "Hello World" );
+
+				  gtk_signal_connect( GTK_OBJECT(window), "delete_event",
+				                      GTK_SIGNAL_FUNC(delete_event), NULL );
+				  gtk_signal_connect( GTK_OBJECT(window), "destroy",
+				                      GTK_SIGNAL_FUNC(destroy), NULL );
+				  gtk_signal_connect( GTK_OBJECT(button), "clicked",
+				                      GTK_SIGNAL_FUNC(hello), NULL );
+				  gtk_signal_connect( GTK_OBJECT(button), "clicked",
+				                      GTK_SIGNAL_FUNC(gtk_main_quit),
+				                      NULL );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Ahora si, Hello World (cont ...)!
+
+
+				  gtk_container_add(GTK_CONTAINER(window), button);
+				  gtk_container_border_width( GTK_CONTAINER(window), 10 );
+				  gtk_widget_show_all(button);
+
+				  gtk_main();
+
+				  return 0;
+				}
+
+			$ gcc `pkg-config --cflags --libs gtk+-2.0` hello_world.c -o hello_world
+			$ ./hello_world
+			delete event occured
+			delete event occured
+			Hello World
+
+%center
+%image "gtk-snapshot-1.png" 1024x768
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Señales y respuestas
+
+
+		GTK es un toolkit gestionado mediante eventos.
+		GTK "duerme" en gtk_main() hasta que se recibe un evento, y transfiere el control.
+		El control se transfiere mediante "señales".
+		Para que un objeto haga algo, se crea un controlador de señales
+				gint gtk_signal_connect( GtkObject *object, gchar *name,
+				                         GtkSignalFunc  func, gpointer func_data );
+
+			object: Widget que emite la señal
+			name : Señal que se quiere cazar
+			func  : Función a llamar
+			func_data : Datos que se pasan a la función func
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Señales y respuestas
+
+
+		La función en el tercer argumento se denomina "función de respuesta".
+
+				void callback_func( GtkWidget *widget, gpointer callback_data );
+
+			widget: Widget que emite la señal
+			callback_data: Puntero a los datos pasados por gtk_signal_connect()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Eventos
+
+
+		Se puede asignar funciones de respuesta a los siguientes eventos
+			event
+			button_press_event
+			button_release_event
+			motion_notify_event
+			delete_event
+			destroy_event
+			expose_event
+			key_press_event
+			key_release_event
+			enter_notify_event
+			leave_notify_event
+			configure_event
+			focus_in_event
+			focus_out_event
+			map_event
+			unmap_event
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Eventos (cont ...)
+
+
+			property_notify_event
+			selection_clear_event
+			selection_request_event
+			selection_notify_event
+			proximity_in_event
+			proximity_out_event
+			drag_begin_event
+			drag_request_event
+			drag_end_event
+			drop_enter_event
+			drop_leave_event
+			drop_data_available_event
+			other_event
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Eventos (cont ...)
+
+
+		Para conectar una función de respuesta a alguno de los eventos anteriores usar gtk_signal_connect()
+		La función de respuestas para los eventos tiene la forma
+
+				void callback_func( GtkWidget *widget, GdkEvent *event, gpointer callback_data );
+
+		GdkEvent es una estructura union cuyo tipo depende de cual de los eventos anteriores haya ocurrido
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Hello World mejorado
+
+
+				#include <gtk/gtk.h>
+
+				/* Respuesta mejorada. Los argumentos de la función se imprimen en el stdout. */
+				void callback(GtkWidget *widget, gpointer data)
+				{
+				  g_print("Hello again - %s was pressed\\n", (char *) data);
+				}
+
+				/* otra respuesta */
+				void delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
+				{
+				  gtk_main_quit();
+				}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Hello World mejorado (cont ...)
+
+
+				int main( int argc, char **argv )
+				{
+				  /* GtkWidget es el tipo de almacenamiento usado para los widgtes */
+				  GtkWidget *window;
+				  GtkWidget *button;
+				  GtkWidget *box1;
+
+				  /* Esta llamada está presente en todas las aplicaciones basadas en GTK.
+				   * Los argumentos introducidos a la aplicación */
+				  gtk_init( &argc, &argv );
+
+				  /* creamos una nueva ventana */
+				  window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+
+				  /* Esta llamada es nueva, establece el título de la ventana
+				   * a "Hello Buttons!" */
+				  gtk_window_set_title( GTK_WINDOW(window), "Hello Buttons!" );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Hello World mejorado (cont ...)
+
+
+				  /* Establecemos el controlador para la llamada delete_event que termina
+				   * la aplicación inmediatamente */
+				  gtk_signal_connect( GTK_OBJECT(window), "delete_event", GTK_SIGNAL_FUNC(delete_event), NULL );
+
+				  /* Establecemos el ancho del borde de la ventana. */
+				  gtk_container_border_width( GTK_CONTAINER(window), 10 );
+
+				  /* Creamos una caja donde empaquetaremos los widgets. La caja
+				   * no se ve realmente, sólo sirve para introducir los widgets */
+				   box1 = gtk_hbox_new( FALSE, 0 );
+
+				   /* ponemos la caja en la ventana principal */
+				   gtk_container_add( GTK_CONTAINER(window), box1 );
+
+				   /* Creamos un nuevo botón con la etiqueta "Button 1" */
+				   button = gtk_button_new_with_label("Button 1");
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Hello World mejorado (cont ...)
+
+
+				   /* Cada vez que el botón sea pulsado llamamos a la función "callback"
+				    * con un puntero a "button 1" como argumento */
+				   gtk_signal_connect( GTK_OBJECT(button), "clicked", GTK_SIGNAL_FUNC(callback), (gpointer) "button 1" );
+
+				   /* En lugar de gtk_container_add empaquetamos el botón en la caja
+				    * invisible, que a su vez ha sido empaquetado en la ventana. */
+				   gtk_box_pack_start( GTK_BOX(box1), button, TRUE, TRUE, 0 );
+
+				   /* hacemos lo mismo para crear un segundo botón */
+				   button = gtk_button_new_with_label( "Button 2" );
+
+				   /* Llamamos a la misma función de respuesta pero con diferente
+				    * argumento: un puntero a "button 2" */
+				   gtk_signal_connect( GTK_OBJECT(button), "clicked", GTK_SIGNAL_FUNC(callback), (gpointer) "button 2" );
+				   gtk_box_pack_start( GTK_BOX(box1), button, TRUE, TRUE, 0 );
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Hello World mejorado (cont ...)
+
+
+				   /* Se muestra todo de golpe */
+				   gtk_widget_show_all( window );
+
+				   /* Esperamos en gtk_main a que comience el espectáculo */
+				   gtk_main();
+
+				   return 0;
+				}
+
+			$ gcc `pkg-config --cflags --libs gtk+-2.0` hello_world_2.c -o hello_world_2
+			$ ./hello_world_2
+			Hello again - button 1 was pressed
+			Hello again - button 2 was pressed
+
+%center
+%image "gtk-snapshot-2.png" 1024x768
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Widgets de empaquetamiento
+
+
+	Cuando se requiere más de un Widget por ventana
+	Control de posición dentro de la ventana
+
+	Uso de cajas
+		Cajas horizontales y verticales
+			Horizontales: Izquierda a derecha
+			Verticales: Arriba a abajo
+		Infinitas cajas
+			gtk_hbox_new()
+			gtk_vbox_new()
+			gtk_box_pack_start(): Izq. -> Der, Arr. -> Abj.
+			gtk_box_pack_end(): Der. -> Izq., Abj. -> Arr.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Widgets de empaquetamiento (Cont ...)
+
+
+	Muchos Widgets son contenedores, incluso un botón
+	En la práctica existen cinco estilos
+%center
+%image "gtk-snapshot-3.png" 1024x768
+%leftfill
+		Cada línea contiene una caja horizontal (hbox) con diferentes botones
+		gtk_box_pack_start es una manera de conseguir empaquetar cada uno de los botones
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Widgets de empaquetamiento (Cont ...)
+
+
+		Esta es la declaración de la función gtk_{h,v}box_new
+				GtkWidget *gtk_hbox_new( gboolean homogeneous, gint spacing );
+
+			homogeneous: Controla si cada objeto tiene el mismo tamaño en la caja (ancho, alto respec.)
+			spacing: Espaciado entre objetos
+
+		Esta es la declaración de la función gtk_box_pack_start
+				void gtk_box_pack_start( GtkBox *box, GtkWidget *child,
+				                         gint expand, gint fill, gint padding );
+
+			box: Caja donde se empaqueta
+			child: Objeto a empaquetar
+			expand: TRUE: Caja se rellena utilizando espacio disponible
+			fill: Objeto utiliza espacio extra alrededor (Sólo si expand==TRUE)
+			padding: Cuántos pixeles rodean al widget
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Widgets en general
+
+
+	Pasos a tener en cuenta al crear un Widget
+		Usar gtk_*_new - Una de las diferentes formas de crear un widget
+		Connectar todas las señales y los eventos a los controladores apropiados
+		Establecer los atributos del widget
+		Empaquetar el widget en un contenedor usando gtk_container_add() o gtk_box_pack_start()
+		Mostrar el widget usando gtk_widget_show() o gtk_widget_show_all()
+
+		Se puede utilizar además, gtk_wigdet_hide()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Conversion de tipos
+
+
+	Facilidad en el uso de macros (validación y conversión)
+		GTK_WIDGET(widget)
+		GTK_OBJECT(object)
+		GTK_SIGNAL_FUNC(function)
+		GTK_CONTAINER(container)
+		GTK_WINDOW(window)
+		GTK_BOX(box)
+
+	Todos los widgets derivan de la clase base GtkObject
+	Siempre se puede usar un widget en lugar de un objeto usando GTK_OBJECT()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Árbol formado por los Widgets
+
+
+			  GtkObject
+			   +GtkData
+			   | +GtkAdjustment
+			   |  ` GtkTooltips
+			    ` GtkWidget
+			      +GtkContainer
+			      | +GtkBin
+			      | | +GtkAlignment
+			      | | +GtkEventBox
+			      | | +GtkFrame
+			      | | | ` GtkAspectFrame
+			      | | +GtkHandleBox
+			      | | +GtkItem
+			      | | | +GtkListItem
+			      | | | +GtkMenuItem
+			      | | | | `GtkCheckMenuItem
+			      | | | |   `GtkRadioMenuItem
+			      etc
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+Introducción a GTK+ (Referencias)
+
+
+	Links !
+
+		http://www.gtk.org/tutorial/index.html
+		http://developer.gnome.org/doc/API/2.0/gtk/
+		http://www.gtk.org/faq/
+		http://glade.pn.org/
+		http://www.gnome.org/projects/devtools/devhelp.shtml
+		apt-get install devhelp-book-gtk2
+		http://www.iki.fi/tml/gimp/win32/

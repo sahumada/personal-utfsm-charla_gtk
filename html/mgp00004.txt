@@ -1,0 +1,15 @@
+Introducción a Glib (Definiciones)
+
+
+Definiciones (#include <glib.h>)
+char  gchar;		unsigned char   guchar;
+short gshort;		unsigned short  gushort;
+long  glong;		unsigned long   gulong;
+int   gint;		unsigned int    guint;
+char  gboolean;
+
+float   gfloat;		
+void*   gpointer;
+double  gdouble;
+long double gldouble;
+

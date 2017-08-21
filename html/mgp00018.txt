@@ -1,0 +1,8 @@
+Introducción a GTK+
+
+
+GTK+ es un API orientado a objetos.
+Está completamente escrito en C.
+Soporta la idea de clases y funciones de respuesta (punteros a funciones)
+Lenguajes: C, C++, Objective C, Ada, Perl, Python, PHP, Scheme, etc.
+

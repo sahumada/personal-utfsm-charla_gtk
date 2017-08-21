@@ -1,0 +1,14 @@
+Conversion de tipos
+
+
+Facilidad en el uso de macros (validación y conversión)
+GTK_WIDGET(widget)		 
+GTK_OBJECT(object)		  
+GTK_SIGNAL_FUNC(function)		   
+GTK_CONTAINER(container)		    
+GTK_WINDOW(window)		     
+GTK_BOX(box)
+
+Todos los widgets derivan de la clase base GtkObject
+Siempre se puede usar un widget en lugar de un objeto usando GTK_OBJECT()
+

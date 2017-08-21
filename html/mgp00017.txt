@@ -1,0 +1,6 @@
+Introducción a Glib (Referencias)
+
+
+http://developer.gnome.org/doc/API/glib/index.html
+http://www.gnome.org/projects/devtools/devhelp.shtml
+

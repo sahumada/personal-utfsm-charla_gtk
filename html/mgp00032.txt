@@ -1,0 +1,21 @@
+Hello World mejorado (cont ...)
+
+
+int main( int argc, char **argv )
+{
+  /* GtkWidget es el tipo de almacenamiento usado para los widgtes */
+  GtkWidget *window;
+  GtkWidget *button;
+  GtkWidget *box1;
+
+  /* Esta llamada está presente en todas las aplicaciones basadas en GTK.
+   * Los argumentos introducidos a la aplicación */
+  gtk_init( &argc, &argv );
+
+  /* creamos una nueva ventana */
+  window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+
+  /* Esta llamada es nueva, establece el título de la ventana 
+   * a "Hello Buttons!" */
+  gtk_window_set_title( GTK_WINDOW(window), "Hello Buttons!" );
+

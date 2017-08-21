@@ -1,0 +1,19 @@
+Widgets de empaquetamiento (Cont ...)
+
+
+Esta es la declaración de la función gtk_{h,v}box_new
+GtkWidget *gtk_hbox_new( gboolean homogeneous, gint spacing );
+
+homogeneous: Controla si cada objeto tiene el mismo tamaño en la caja (ancho, alto respec.)
+spacing: Espaciado entre objetos
+
+Esta es la declaración de la función gtk_box_pack_start
+void gtk_box_pack_start( GtkBox *box, GtkWidget *child,
+                         gint expand, gint fill, gint padding );
+     
+box: Caja donde se empaqueta
+child: Objeto a empaquetar
+expand: TRUE: Caja se rellena utilizando espacio disponible
+fill: Objeto utiliza espacio extra alrededor (Sólo si expand==TRUE)
+padding: Cuántos pixeles rodean al widget
+

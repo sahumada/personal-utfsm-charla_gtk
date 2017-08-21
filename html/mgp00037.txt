@@ -1,0 +1,9 @@
+Widgets de empaquetamiento (Cont ...)
+
+
+Muchos Widgets son contenedores, incluso un botón
+En la práctica existen cinco estilos
+
+Cada línea contiene una caja horizontal (hbox) con diferentes botones
+gtk_box_pack_start es una manera de conseguir empaquetar cada uno de los botones
+

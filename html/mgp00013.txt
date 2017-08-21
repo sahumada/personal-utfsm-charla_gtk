@@ -1,0 +1,15 @@
+Introducción a Glib (Otras funciones)
+
+
+Funciones de error y funciones varias (Continuación...)
+void g_message( gchar *format, ... );
+Imprime mensaje agregando "Message:"
+gchar *g_strsignal( gint signum );
+Imprime el nombre de la señal del sistema Unix que corresponde con el número signum.
+
+Un ejemplo:
+$ gcc -Wall glib_ex.c -o glib_ex `pkg-config glib-2.0 --cflags --libs`
+$ ./glib_ex
+** Message: glib_ex:open:/home/san/hola.c:Success
+
+

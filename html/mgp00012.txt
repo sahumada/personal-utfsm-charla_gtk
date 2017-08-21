@@ -1,0 +1,15 @@
+Introducción a Glib (Otras funciones)
+
+
+Funciones de error y funciones varias
+void g_print( gchar *format, ... );
+Reemplazo de printf(3).
+gchar *g_strdup( const gchar *str );
+Duplica un string str en un nuevo lugar en memoria, y devuelve un puntero.
+gchar *g_strerror( gint errnum );
+Salida: nombre del programa:función que falló:archivo o descripción adicional:strerror
+void g_error( gchar *format, ... );
+Imprime mensaje agregando "**ERROR**:" y termina el programa.
+void g_warning( gchar *format, ... );
+Imprime mensaje agregando "**WARNING**:", no sale del programa.
+

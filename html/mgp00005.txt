@@ -1,0 +1,11 @@
+Introducción a Glib (Definiciones)
+
+
+Definiciones (independientes de la arquitectura)
+gint8			
+guint8		
+gint16			
+guint16		
+gint32			
+guint32		
+

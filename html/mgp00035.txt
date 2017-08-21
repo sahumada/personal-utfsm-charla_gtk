@@ -1,0 +1,19 @@
+Hello World mejorado (cont ...)
+
+
+   /* Se muestra todo de golpe */
+   gtk_widget_show_all( window );
+
+   /* Esperamos en gtk_main a que comience el espectáculo */
+   gtk_main();
+
+   return 0;
+}
+
+$ gcc `pkg-config --cflags --libs gtk+-2.0` hello_world_2.c -o hello_world_2
+$ ./hello_world_2
+Hello again - button 1 was pressed
+Hello again - button 2 was pressed
+
+
+

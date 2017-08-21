@@ -1,0 +1,20 @@
+Ahora si, Hello World (cont ...)!
+
+
+  gtk_container_add(GTK_CONTAINER(window), button);
+  gtk_container_border_width( GTK_CONTAINER(window), 10 );
+  gtk_widget_show_all(button);
+
+  gtk_main();
+
+  return 0;
+}
+
+$ gcc `pkg-config --cflags --libs gtk+-2.0` hello_world.c -o hello_world
+$ ./hello_world
+delete event occured
+delete event occured
+Hello World
+
+
+

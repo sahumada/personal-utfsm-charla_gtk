@@ -1,0 +1,11 @@
+Eventos (cont ...)
+
+
+Para conectar una función de respuesta a alguno de los eventos anteriores usar gtk_signal_connect()
+La función de respuestas para los eventos tiene la forma
+
+void callback_func( GtkWidget *widget, GdkEvent *event, gpointer callback_data );
+
+GdkEvent es una estructura union cuyo tipo depende de cual de los eventos anteriores haya ocurrido
+
+

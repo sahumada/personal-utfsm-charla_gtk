@@ -1,0 +1,17 @@
+Eventos (cont ...)
+
+
+property_notify_event
+selection_clear_event
+selection_request_event
+selection_notify_event
+proximity_in_event					    
+proximity_out_event					     
+drag_begin_event					      
+drag_request_event					       
+drag_end_event					        
+drop_enter_event
+drop_leave_event
+drop_data_available_event
+other_event
+

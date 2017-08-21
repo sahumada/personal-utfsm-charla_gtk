@@ -1,0 +1,13 @@
+Ejemplo muy simple !
+
+
+window = gtk_window_new( GTK_WINDOW_TOPLEVEL );
+GTK_WINDOW_TOPLEVEL decora y sitúa la ventana
+Ventanas de 200x200 por omisión
+
+gtk_widget_show( window );
+El Widget está listo, puede mostrarlo
+
+gtk_main()
+Todo programa GTK debe tener esta función. En espera que ocurra algún evento
+
